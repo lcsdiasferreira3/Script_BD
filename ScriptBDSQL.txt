@@ -3,7 +3,7 @@ go
 
 drop database Lojainfo
 go
-create database Lojainfo 
+create database Lojainfo	
 go 
 
 use Lojainfo
@@ -90,10 +90,9 @@ alter table tb_vendas_canceladas
 insert into tb_clientes (nome,idade,sexo,email,endereco,fone) VALUES 
 ('Lucas',17,'Maculino','Lucas@gmail.com','AV paulista, 343', '94584545' ),
 ('José',45,'Maculino','José@gmail.com','Rua Jacu Pessego, 191', '55124151' ),
-('Fulano',18,'Maculino','Fulano@gmail.com','Rua aldeia, 248', '8544121' ),
-('Ciclano',19,'Maculino','Ciclano@gmail.com','Rua olo, 699','821122112' ),
-('Henrique',16,'Maculino','Henrique@gmail.com','Av aguia de haia, 553', '822151211' )
-	select * from tb_clientes																				
+('Fulano',18,'Maculino','Fulano@gmail.com','Rua aldeia, 248', '8544121')
+
+																			
 go
  insert into tb_hardware (descricao,preco_unit,qtde_atual,qtde_minima) VALUES ('PC', 543.00, 89,15),
 ('Placa de vídeo', 1000.00, 215, 720),
@@ -101,11 +100,11 @@ go
 ('Monitor', 1500, 22,6),
 ('Mouse razer', 10.000, 40,10)
 go
-insert into tb_vendas (id_cliente,data) VALUES (1,'22/04/2002'),
+insert into tb_vendas (id_cliente,data) VALUES (2,'22/04/2002'),
 (2,'23/11/2002'),
 (3,'31/05/2011'),
-(4,'14/10/2012'),
-(5,'30/09/2013')
+(2,'14/10/2012'),
+(3,'30/09/2013')
 go
 insert into tb_vendas_itens (id_venda,id_hardware,pco_vda,qtde_item) VALUES 
 (1,1,1000.00,1),
@@ -116,7 +115,7 @@ insert into tb_vendas_itens (id_venda,id_hardware,pco_vda,qtde_item) VALUES
 go
 																			  
 																			 
-select * from tb_clientes
+/*select * from tb_clientes
 go
 select * from tb_hardware
 go
@@ -124,3 +123,19 @@ select * from tb_vendas
 go
 select * from tb_vendas_itens
 go
+*/
+
+
+/*
+
+Busca somente os clientes que fizeram compra
+
+select v.id_cliente, c.nome FROM tb_vendas v
+inner join tb_clientes c
+on v.id_cliente = c.id_cliente
+*/
+
+
+select v.id_cliente, c.nome FROM tb_clientes c
+left join tb_vendas v
+on v.id_cliente = c.id_cliente WHERE v.id_cliente is null
